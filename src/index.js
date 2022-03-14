@@ -68,20 +68,31 @@ controls.maxDistance = 9;
 controls.minDistance = 1;
 
 
-//parametric geometry provides points for boxes
-const geometry = new ParametricGeometry( ParametricGeometries.mobius3d,feet.density.value2, feet.density.value1 );
+//test geometry
+const geometry = new THREE.BoxGeometry( 3,3,3 );
 geometry.rotateY(0.25);
 geometry.computeBoundingBox();
 
 //placeholder material for testing
 const material = new THREE.MeshNormalMaterial({side: THREE.DoubleSide});
 
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
 
 
 //this scene is used for export
 const exportScene = new THREE.Scene();
 
-
+let colors = [];
+for (let i = 0; i < 1; i+=0.01) {
+  const d3RgbColor = feet.interpolateFn(i);
+  colors.push(d3RgbColor);
+  const mat = new THREE.MeshStandardMaterial({
+    color: new THREE.Color(d3RgbColor.r/255, d3RgbColor.g/255, d3RgbColor.b/255),
+    roughness: 0
+  });
+  //materials.push(mat);
+}
 
 //set the background colors 
 let bod = document.body;
