@@ -7,6 +7,7 @@ import { StonerSculpturesFeatures } from './StonerSculpturesFeatures';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter';
+import { ConvexGeometry } from 'three/examples/jsm/geometries/ConvexGeometry';
 
 //1) - generate fxhash features - global driving parameters
 //new featuresClass
@@ -47,7 +48,7 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 let camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1000 );
-camera.position.set( 3.5, 3.5, 3.5 );
+camera.position.set( 4.5, 4.5, 4.5 );
 
 //lights
 const p1 = new THREE.PointLight( 0xcccccc, 1);
@@ -69,9 +70,24 @@ controls.minDistance = 1;
 
 
 //test geometry
-const geometry = new THREE.BoxGeometry( 3,3,3 );
-geometry.rotateY(0.25);
-geometry.computeBoundingBox();
+// const geometry = new THREE.BoxGeometry( 3,3,3 );
+// geometry.rotateY(0.25);
+// geometry.computeBoundingBox();
+
+//convex hull geometry
+const vertices = [];
+
+for (let i = 0; i < Math.round(feet.map(fxrand(), 0, 1, 25, 150)); i++) {
+  const v = new THREE.Vector3(
+    feet.map(fxrand(), 0, 1, -2, 2),
+    feet.map(fxrand(), 0, 1, -2, 2),
+    feet.map(fxrand(), 0, 1, -2, 2)
+  )
+  
+  vertices.push(v);
+}
+
+const geometry = new ConvexGeometry(vertices);
 
 //placeholder material for testing
 const material = new THREE.MeshNormalMaterial({side: THREE.DoubleSide});
