@@ -57,11 +57,10 @@ class StonerSculpturesFeatures {
         }
         this.setShuffle();
 
-        //drives how many subdivisions in the surface
+        //drives how many points in the convex hull geometry
         this.density = {
             tag: "",
-            value1: "",
-            value2: ""
+            value: ""
         }
         this.setDensity();
 
@@ -156,23 +155,23 @@ class StonerSculpturesFeatures {
         let e = fxrand();
 
         if (e < 0.44) {
-            this.env.name = "Dawn";
+            this.env.tag = "Dawn";
             this.env.img = Dawn;
         }
         else if (e < 0.66){
-            this.env.name = "Forest";
+            this.env.tag = "Forest";
             this.env.img = Forest;
         }
         else if (e < 0.77){
-            this.env.name = "Hill";
+            this.env.tag = "Hill";
             this.env.img = Hill;
         }
         else if (e < 0.88){
-            this.env.name = "Lake";
+            this.env.tag = "Lake";
             this.env.img = Lakeside;
         }
         else{
-            this.env.name = "Pines";
+            this.env.tag = "Pines";
             this.env.img = Pines;
         }
     }
@@ -241,10 +240,9 @@ class StonerSculpturesFeatures {
 
     setDensity(){
         let d = fxrand();
-        this.density.value1 = this.map(d, 0, 1, 40, 65);
-        this.density.value2 = this.map(d, 0, 1, 110, 135);
+        this.density.value = this.map(d, 0, 1, 25, 150);
 
-        if( d < 0.35 ) this.density.tag = "Sparse";
+        if( d < 0.35 ) this.density.tag = "Low";
         else if ( d < 0.8 ) this.density.tag = "Medium";
         else this.density.tag = "Dense";
     }

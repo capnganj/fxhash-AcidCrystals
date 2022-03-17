@@ -1,5 +1,5 @@
-//CAPNGANJ Stoner Sculptures fxhash generative token
-//February, 2022
+//CAPNGANJ Shatter Hash fxhash generative token
+//March, 2022
 
 //imports
 import { StonerSculpturesFeatures } from './StonerSculpturesFeatures';
@@ -17,14 +17,15 @@ window.$fxhashData = feet;
 
 // FX Features
 window.$fxhashFeatures = {
-  "Palette" : feet.color.name,
-  "Size" : feet.major.tag,
+  "Temperature" : feet.color.name,
+  "Zone" : feet.env.tag,
   "Thickness" : feet.a.tag,
   "Height": feet.b.tag,
   "Shuffle": feet.shuffle.tag,
   "Box Size": feet.boxSize.tag,
   "Density": feet.density.tag
 };
+console.log(window.$fxhashFeatures);
 let previewed = false;
 
 //from fxhash webpack boilerplate
@@ -49,7 +50,7 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 let camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1000 );
-camera.position.set( 4.5, 0, 4.5 );
+camera.position.set( 4, 0, 4 );
 
 //lights
 const amb = new THREE.AmbientLight(0xffffff);
@@ -73,7 +74,7 @@ backgroundTexture.encoding = THREE.sRGBEncoding;
 
 //convex hull geometry
 const vertices = [];
-for (let i = 0; i < Math.round(feet.map(fxrand(), 0, 1, 25, 150)); i++) {
+for (let i = 0; i < feet.density.value; i++) {
   const v = new THREE.Vector3(
     feet.map(fxrand(), 0, 1, -2, 2),
     feet.map(fxrand(), 0, 1, -2, 2),
