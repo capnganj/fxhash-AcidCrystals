@@ -1,5 +1,10 @@
 import { interpolateCool, interpolateInferno, interpolateMagma, interpolateWarm, interpolateViridis } from 'd3-scale-chromatic'
 import { rgb, hsl, color } from 'd3-color';
+import Dawn from './dawn.jpg';
+import Forest from './forest.jpg';
+import Hill from './hill.jpg';
+import Lakeside from './lakeside.jpg';
+import Pines from './pines.jpg';
 
 class StonerSculpturesFeatures {
     constructor() {
@@ -9,6 +14,13 @@ class StonerSculpturesFeatures {
             name: ""
         };
         this.setColor();
+
+        //environment
+        this.env = {
+            name: "",
+            img: {}
+        }
+        this.setEnv();
 
         //drives major parameter of mobius 3d geometry
         this.major = {
@@ -119,7 +131,8 @@ class StonerSculpturesFeatures {
         }
     }
 
-    setColor(){
+    setColor(){this.color.name = "Warm"}
+    setColor2(){
         let c = fxrand();
         
         if( c < 0.15){
@@ -136,6 +149,31 @@ class StonerSculpturesFeatures {
         }
         else {
             this.color.name = "Inferno"
+        }
+    }
+
+    setEnv(){
+        let e = fxrand();
+
+        if (e < 0.44) {
+            this.env.name = "Dawn";
+            this.env.img = Dawn;
+        }
+        else if (e < 0.66){
+            this.env.name = "Forest";
+            this.env.img = Forest;
+        }
+        else if (e < 0.77){
+            this.env.name = "Hill";
+            this.env.img = Hill;
+        }
+        else if (e < 0.88){
+            this.env.name = "Lake";
+            this.env.img = Lakeside;
+        }
+        else{
+            this.env.name = "Pines";
+            this.env.img = Pines;
         }
     }
 
