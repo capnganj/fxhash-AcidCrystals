@@ -17,12 +17,8 @@ window.$fxhashData = feet;
 
 // FX Features
 window.$fxhashFeatures = {
-  "Temperature" : feet.color.name,
+  "Temperature" : feet.color.tag,
   "Zone" : feet.env.tag,
-  "Thickness" : feet.a.tag,
-  "Height": feet.b.tag,
-  "Shuffle": feet.shuffle.tag,
-  "Box Size": feet.boxSize.tag,
   "Density": feet.density.tag
 };
 console.log(window.$fxhashFeatures);
@@ -109,8 +105,7 @@ for (let i = 0; i < 1; i+=0.01) {
 
 //set the background color 
 let bod = document.body;
-const stop = Math.round(feet.map(fxrand(),0,1,10,90));
-bod.style.backgroundColor = colors[stop];
+bod.style.backgroundColor = feet.color.value;
 
 
 //set up resize listener and let it rip!
