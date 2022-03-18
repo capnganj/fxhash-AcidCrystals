@@ -31,19 +31,6 @@ class StonerSculpturesFeatures {
         this.setDensity();
     }
 
-    //color palette interpolation
-    interpolateFn(val){
-        switch (this.color.name) {
-            case "Cool": return rgb(interpolateCool(val));
-            case "Warm": return rgb(interpolateWarm(val));
-            case "Viridis": return rgb(interpolateViridis(val));
-            case "Magma": return rgb(interpolateMagma(val));
-            case "Inferno": return rgb(interpolateInferno(val));
-            default:
-                return "high"
-        }
-    }
-
     //map function logic from processing <3
     map(n, start1, stop1, start2, stop2){
         const newval = (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
@@ -58,7 +45,6 @@ class StonerSculpturesFeatures {
 
         this.color.value = rgb(interpolateWarm(c));
     }
-
 
     setEnv(){
         let e = fxrand();

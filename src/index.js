@@ -22,6 +22,11 @@ window.$fxhashFeatures = {
   "Density": feet.density.tag
 };
 console.log(window.$fxhashFeatures);
+
+//vars related to fxhash preview call
+//loaded tracks whether texture has loaded;
+//previewed tracks whether preview has been called
+let loaded = false;
 let previewed = false;
 
 //from fxhash webpack boilerplate
@@ -63,7 +68,7 @@ controls.minDistance = 1;
 
 //equirectangular map for backgrounds, reflection / refraction
 const textureLoader = new THREE.TextureLoader();
-const backgroundTexture = textureLoader.load(feet.env.img);
+const backgroundTexture = textureLoader.load(feet.env.img, () => {loaded = true});
 backgroundTexture.mapping = THREE.EquirectangularReflectionMapping;
 backgroundTexture.encoding = THREE.sRGBEncoding;
 
@@ -95,13 +100,6 @@ const lambert = new THREE.MeshLambertMaterial({
 const mesh = new THREE.Mesh(geometry, lambert);
 scene.add(mesh);
 
-
-
-let colors = [];
-for (let i = 0; i < 1; i+=0.01) {
-  const d3RgbColor = feet.interpolateFn(i);
-  colors.push(d3RgbColor);
-}
 
 //set the background color 
 let bod = document.body;
@@ -141,7 +139,7 @@ function render() {
 
   renderer.render( scene, camera );
 
-  if(previewed == false){
+  if(previewed == false && loaded == true){
     fxpreview();
     previewed = true;
   } 
