@@ -1,10 +1,10 @@
 import { interpolateWarm } from 'd3-scale-chromatic'
 import { rgb, hsl, color } from 'd3-color';
-import Dawn from './dawn.jpg';
-import Forest from './forest.jpg';
-import Hill from './hill.jpg';
-import Lakeside from './lakeside.jpg';
-import Pines from './pines.jpg';
+import Dawn from './dawn.png';
+import Forest from './forest.png';
+import Hill from './hill.png';
+import Lakeside from './lakeside.png';
+import Pines from './pines.png';
 
 class StonerSculpturesFeatures {
     constructor() {
